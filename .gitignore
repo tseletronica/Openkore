@@ -39,6 +39,10 @@ src/auto/XSTools/utils/perl/Rijndael.xs.cpp
 src/auto/XSTools/utils/perl/Whirlpool.c
 src/test/http-reader-test
 
+# Configurações locais
+start_geral.bat
+control/config_*.txt
+
 # Local modifications of official files.
 tables/iRO/*-custom.txt
 
