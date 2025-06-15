@@ -220,3 +220,10 @@ Yellow Plant 0 0 0
 1648 -1 1 0 #Whitesmith Harword
 1917 -1 1 0 #Wounded Morroc
 1658 -1 1 0 #Ygnizem
+
+Spore 1 0 0 0 0 0 0 0
+element Water
+
+Snake 1 0 0 0 0 0 0 0
+element Earth
+

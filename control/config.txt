@@ -4,7 +4,7 @@
 ######## Login options and server-specific options ########
 
 master Latam - ROla: Freya/Nidhogg/Yggdrasil
-server
+server 0
 username
 password
 loginPinCode
@@ -37,7 +37,7 @@ XKore_ID
 
 # It is not advised to set secureAdminPassword if you're using Xkore 2
 secureAdminPassword 1
-adminPassword
+adminPassword doujetwa
 callSign
 commandPrefix ;
 callSignGM 0
@@ -200,7 +200,7 @@ itemsGatherAuto_notInTown 1
 itemsGatherAutoMinPlayerDistance 6
 itemsGatherAutoMinPortalDistance 5
 itemsMaxWeight 89
-itemsMaxWeight_sellOrStore 48
+itemsMaxWeight_sellOrStore 99
 itemsMaxNum_sellOrStore 99
 cartMaxWeight 7900
 itemsTakeGreed 0
@@ -439,13 +439,13 @@ doCommand {
 	manualAI 0
 }
 
-useSelf_item [Evento] Poção de Aprendiz,Poção para Aprendizes {
+useSelf_item [Evento] Poção Laranja,[Evento] Poção de Aprendiz,Poção para Aprendizes,Pão de Melão,Suco de Melão, Sorvete de Melão,Melão Amarelo {
 	hp < 70%
 	whenStatusInactive
 	notWhileSitting 1
 	timeout 0
 }
-useSelf_item Asa de Mosca de Iniciante,Asa de Mosca {
+useSelf_item [Evento] Asa de Mosca de Iniciante,Asa de Mosca de Iniciante,Asa de Mosca {
 	hp < 25%
 	timeout 5
 	whenStatusInactive
@@ -501,7 +501,10 @@ getAuto {
 	disabled 0
 }
 
+
 ######## Debugging options; only useful for developers ########
+macro 1
+macro_filename macros.txt
 
 debug 0
 debugPacket_unparsed 0

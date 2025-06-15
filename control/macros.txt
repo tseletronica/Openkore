@@ -1,0 +1,14 @@
+automacro EnviarZeny {
+zeny >= 5100
+call {
+do rodex open
+do rodex write
+do rodex settarget Maganize Luiz
+do rodex settitle Zeny
+do rodex setbody Zeny
+do rodex setzeny 5000
+do rodex send
+do reload macros.txt
+}
+run-once 1
+}

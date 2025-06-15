@@ -1,0 +1,99 @@
+# ============================================
+# MACRO: handleLevelMapRouting
+# Autor: Seraph Pirate
+# Descrição: Gerencia o roteamento automático do personagem
+#           com base no nível atual.
+# Uso: Chamado automaticamente pelo sistema
+# ============================================
+
+macro handleLevelMapRouting {
+    # Exibe o nível atual no console
+    log ^gNível ^b$.lvl^g detectado^n
+
+    # ===== NÍVEIS 7-18 =====
+    # Local: Geffen e arredores
+    if ($.lvl >= 7 && $.lvl <= 18) {
+        log ^gNível 7-18: Indo para Geffen Field 04^n
+        log ^yDesativando caminhada aleatória para ir até o Kafra...^n
+        do conf route_randomWalk 0
+        do move geffen 120 65
+        do talknpc 120 65 c r0  # Salva no Kafra
+        do conf lockMap gef_fild04
+        log ^gReativando caminhada aleatória no mapa de caça...^n
+        do conf route_randomWalk 1
+
+    # ===== NÍVEIS 19-40 =====
+    # Local: Geffen Field 05
+    } elsif ($.lvl >= 19 && $.lvl <= 40) {
+        log ^gNível 19-40: Indo para Geffen Field 05^n
+        do conf lockMap gef_fild05
+
+    # ===== NÍVEIS 41-53 =====
+    # Local: Geffen Field 06
+    } elsif ($.lvl >= 41 && $.lvl <= 53) {
+        log ^gNível 41-53: Indo para Geffen Field 06^n
+        do conf lockMap gef_fild06
+
+    # ===== NÍVEIS 54-70 =====
+    # Local: Mjolnir
+    } elsif ($.lvl >= 54 && $.lvl <= 70) {
+        log ^gNível 54-70: Indo para Mjolnir 12^n
+        log ^yDesativando caminhada aleatória para ir até o Kafra...^n
+        do conf route_randomWalk 0
+        do move aldebaran 143 119
+        do talknpc 143 119 c r0  # Salva no Kafra
+        do conf lockMap mjolnir_12
+        log ^gReativando caminhada aleatória no mapa de caça...^n
+        do conf route_randomWalk 1
+
+    # ===== NÍVEL FORA DA FAIXA =====
+    } else {
+        log ^rERRO: Nível ^b$.lvl^r fora da faixa configurada (7-70)^n
+    }
+
+    # Libera a automacro para permitir nova execução
+    do release autoLevelMapRouting
+}
+
+# ============================================
+# MACRO: venderNoNpc
+# Autor: Seraph Pirate
+# Descrição: Gerencia a venda de itens em Payon
+# Uso: Chamado automaticamente quando o peso estiver alto
+# ============================================
+
+macro venderNoNpc {
+    if ($.map == "pay_fild08") {
+        do log ^b[Macro] Indo vender em Payon...^n
+
+        # Pausa o AI automático e desativa caminhada aleatória
+        do ai manual
+        do conf route_randomWalk 0
+        log ^yDesativando caminhada aleatória para ir até o vendedor...^n
+
+        # Move até Payon e vai até o NPC vendedor
+        do move payon 159 96
+        pause 2
+
+        # Configurações do sellAuto
+        do conf sellAuto_npc payon 159 96
+        do conf sellAuto_standpoint
+        do conf sellAuto_distance 3
+        do conf sellAuto_maxDistance 5
+        do conf sellAuto_npc_steps s
+
+        # Ativa o sistema de venda automática
+        do conf sellAuto 1
+        do log ^b[Macro] Venda ativada.^n
+
+        # Reativa o AI e a caminhada aleatória
+        do ai on
+        do conf route_randomWalk 1
+        log ^gCaminhada aleatória reativada.^n
+
+        # Libera a automacro para permitir nova execução
+        do release pesoAltoVender
+    } else {
+        log ^r[Macro] Erro: Esta macro só funciona em pay_fild08^n
+    }
+}
