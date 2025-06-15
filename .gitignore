@@ -41,6 +41,7 @@ src/test/http-reader-test
 
 # Configurações locais
 start_geral.bat
+start_geralWX.bat
 control/config_*.txt
 
 # Local modifications of official files.
