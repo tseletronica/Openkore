@@ -43,6 +43,7 @@ src/test/http-reader-test
 start_geral.bat
 start_geralWX.bat
 control/config_*.txt
+config.txt
 
 # Local modifications of official files.
 tables/iRO/*-custom.txt
