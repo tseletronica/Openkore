@@ -23,127 +23,168 @@ macro setup {
     release vaiporing
 }
 automacro vaiporing {
-    BaseLevel 1 .. 7
+    BaseLevel 1 .. 9
     run-once 1
     timeout 10
     call poring
 }
 macro poring {
-    if ($.lvl >= 8) {
-        release vaiesporos
+    if ($.lvl >= 9 && $.zeny >= 120) {
+        release vaimandragora
         stop
     } else {
-    do conf lockMap prt_fild08
-    do conf route_randomWalk 1
-    do conf route_randomWalk_inTown 0
-    do conf attackAuto 2
-    do conf attackAuto_inLockOnly 1
-    do conf teleportAuto_hp 30
-    do conf sellAuto 1
-    do conf sellAuto_npc payon 159 96
-    do conf sellAuto_standpoint
-    do conf sellAuto_distance 5
-    do conf sellAuto_npc_steps s
+			do conf lockMap prt_fild08
+			do conf route_randomWalk 1
+			do conf route_randomWalk_inTown 0
+			do conf attackAuto 2
+			do conf attackAuto_inLockOnly 1
+			do conf teleportAuto_hp 30
+			do conf sellAuto 1
+			do conf sellAuto_npc izlude 105 99
+			do conf sellAuto_standpoint
+			do conf sellAuto_distance 5
+			do conf sellAuto_npc_steps s
 	}
 }
-automacro vaiesporos {
-    BaseLevel 8 .. 27
+automacro vaimandragora {
+    BaseLevel 9 .. 18
     run-once 1
     timeout 10
-    call salvepayon
+    call salvaemgeffen
 }
-macro salvepayon {
-	do autosell
-	do move payon 181 104
-	do talknpc payon 181 104 r0
-	release esporo
+macro salvaemgeffen {
+    # Salva no warper de Geffen
+    if ($.map == "aldebaran" && $.zeny >= 120) {
+        do conf route_randomWalk 0
+        do move aldebaran 143 119
+        pause 3
+        do talknpc 143 119 c r3 c r0
+        pause 3
+        do move geffen 120 62
+        pause 3
+        do talknpc 120 62 ro
+        pause 3
+    } else if ($.map == "izlude" && $.zeny >= 120) {
+        do conf route_randomWalk 0
+        do move izlude 128 148
+        pause 3
+        do talknpc 128 148 c r3 c r0
+        pause 3
+        do move geffen 120 62
+        pause 3
+        do talknpc 120 62 ro
+        pause 3
+    } else if ($.map == "geffen") {
+		# Se já estiver em Geffen, apenas fala com o NPC
+		do conf route_randomWalk 0
+		do move geffen 120 62
+		pause 3
+		do talknpc 120 62 ro
+		pause 3
+	}
+    # Verifica o nível para decidir o próximo passo
+    if ($.lvl >= 81) {
+        call petite
+    }
+    elseif ($.lvl >= 20) {
+        release vaicreamy
+    }
+    else {
+        call mandragora
+    }
+    do conf route_randomWalk 1
 }
-macro esporo {
-    if ($.lvl >= 28) {
-        release vaibigfoot
+
+macro mandragora {
+    if ($.lvl >= 20) {
+        release vaicreamy
         stop
     } else {
-	do conf lockMap pay_fild08
-	do conf route_randomWalk 1
-	do conf route_randomWalk_inTown 0
-	do conf attackAuto 2
-	do conf attackAuto_inLockOnly 1
-	do conf teleportAuto_hp 30
-	do conf sellAuto 1
-	do conf sellAuto_npc payon 159 96
-	do conf sellAuto_standpoint
-	do conf sellAuto_distance 5
-	do conf sellAuto_npc_steps s
+			do conf lockMap gef_fild04
+			do conf route_randomWalk 1
+			do conf route_randomWalk_inTown 0
+			do conf attackAuto 2
+			do conf attackAuto_inLockOnly 1
+			do conf teleportAuto_hp 30
+			do conf sellAuto 1
+			do conf sellAuto_npc geffen_in 74 144
+			do conf sellAuto_standpoint
+			do conf sellAuto_distance 5
+			do conf sellAuto_npc_steps s
 	}
 
 }
-automacro vaibigfoot {
-    BaseLevel 28 .. 44
+automacro vaicreamy {
+    BaseLevel 20 .. 35
     run-once 1
     timeout 10
-    call bigfoot
+    call creamy
 }
-macro bigfoot {
-    if ($.lvl >= 45) {
+macro creamy {
+    if ($.lvl >= 35) {
         release vaiyoyo
         stop
     } else {
-
-    do conf lockMap pay_fild07
-    do conf route_randomWalk 1
-    do conf route_randomWalk_inTown 0
-    do conf attackAuto 2
-    do conf attackAuto_inLockOnly 1
-    do conf teleportAuto_hp 30
-    do conf sellAuto 1
-    do conf sellAuto_npc payon 159 96
-    do conf sellAuto_standpoint
-    do conf sellAuto_distance 5
-    do conf sellAuto_npc_steps s
+    do conf lockMap gef_fild05
+	do conf route_randomWalk 1
+		do conf attackAuto 2
+		do conf attackAuto_inLockOnly 1
+		do conf sellAuto 1
+		do conf sellAuto_npc geffen_in 74 144
+		do conf sellAuto_standpoint
+		do conf sellAuto_distance 5
+		do conf sellAuto_npc_steps s
 	}
 
 }
-automacro vaiyoyo{
-	BaseLevel 45 .. 54
+automacro vaiyoyo {
+    BaseLevel 35 .. 55
     run-once 1
     timeout 10
-    call salvageffen
-	stop
-}
-macro salvageffen {
-	if($.map=="payon") {
-	do move payon 181 104
-	do talknpc payon 181 104 c r0
-	}
-    do conf lockMap geffen
-    do move geffen 116 68
-    do talknpc 120 62 r0
-    call yoyo
-}
-macro salvaaldebaran {
-    do conf lockMap aldebaran
-    do move aldebaran 143 119
-    do talknpc 143 119 c r0
     call yoyo
 }
 macro yoyo {
     if ($.lvl >= 55) {
-        call mosca
-        stop
-    } else {
-    do conf lockMap mjolnir_02
-    do conf route_randomWalk 1
-    do conf route_randomWalk_inTown 0
-    do conf attackAuto 2
-    do conf attackAuto_inLockOnly 1
-    do conf teleportAuto_hp 30
-    do conf teleportAuto_minAggressivesInLock 3
-    do conf sellAuto 1
-    do conf sellAuto_npc aldebaran 165 107
-    do conf sellAuto_standpoint
-    do conf sellAuto_distance 5
-    do conf sellAuto_npc_steps s
-	}
+        call salvaaldebaran
+    }else {
+        do conf lockMap mjolnir_02
+        do conf route_randomWalk 1
+		do conf attackAuto 2
+		do conf attackAuto_inLockOnly 1
+		do conf sellAuto 1
+		do conf sellAuto_npc geffen_in 74 144
+		do conf sellAuto_standpoint
+		do conf sellAuto_distance 5
+		do conf sellAuto_npc_steps s
+    }
+	do conf route_randomWalk 1
+}
+macro salvaaldebaran {
+    # Salva em Aldebaran
+    do conf route_randomWalk 0
+    do move geffen 120 62
+    pause 3
+    do talknpc 120 62 c r3 c r2
+    pause 3
+    do move aldebaran 143 119
+    pause 3
+    do talknpc 143 119 ro
+    pause 2
+    do conf lockMap aldebaran
+    # Verifica o nível para decidir o próximo passo
+    if ($.lvl >= 81) {
+        release vaipetite
+    }
+    else {
+        release vaimosca
+    }
+}
+automacro vaimosca {
+    BaseLevel 55 .. 80
+    run-once 1
+    overrideAI 1
+    exclusive 1
+    call mosca
 }
 macro mosca {
     if ($.lvl >= 81) {
@@ -170,16 +211,8 @@ automacro vaipetite {
     run-once 1
     overrideAI 1
     exclusive 1
-    call salvageffen2
+    call salvaemgeffen
 }
-
-macro salvageffen2 {
-    do conf lockMap geffen
-    do move geffen 116 68
-    do talknpc 120 62 r0
-    release petite
-}
-
 macro petite {
     # Configurações de mapa e movimento
     do conf lockMap gef_fild08
