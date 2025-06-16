@@ -44,6 +44,8 @@ start_geral.bat
 start_geralWX.bat
 control/config_*.txt
 config.txt
+macro.txt
+eventMacros.txt
 
 # Local modifications of official files.
 tables/iRO/*-custom.txt

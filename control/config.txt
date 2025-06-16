@@ -4,7 +4,7 @@
 ######## Login options and server-specific options ########
 
 master Latam - ROla: Freya/Nidhogg/Yggdrasil
-server 0
+server
 username
 password
 loginPinCode
@@ -37,7 +37,7 @@ XKore_ID
 
 # It is not advised to set secureAdminPassword if you're using Xkore 2
 secureAdminPassword 1
-adminPassword doujetwa
+adminPassword brogelau
 callSign
 commandPrefix ;
 callSignGM 0
@@ -54,6 +54,8 @@ ignoreInvalidLogin 0
 whenInGame_requestCashPoints 0
 
 message_length_max 80
+
+
 
 ######## Main configuration ########
 
@@ -193,7 +195,7 @@ followLostStep 12
 followSitAuto 0
 followBot 0
 
-itemsTakeAuto 2
+itemsTakeAuto 1
 itemsTakeAuto_party 0
 itemsGatherAuto 1
 itemsGatherAuto_notInTown 1
@@ -206,7 +208,7 @@ cartMaxWeight 7900
 itemsTakeGreed 0
 itemsCheckWeight 1
 
-lockMap
+lockMap mjolnir_02
 lockMap_x
 lockMap_y
 lockMap_randX
@@ -279,7 +281,7 @@ tankMode 0
 tankModeTarget
 
 teleportAuto_hp 30
-teleportAuto_sp 0
+teleportAuto_sp 50
 teleportAuto_idle 0
 teleportAuto_portal 0
 teleportAuto_search 0
@@ -469,10 +471,10 @@ buyAuto {
 	minBase
 }
 
-sellAuto 0
-sellAuto_npc
+sellAuto 1
+sellAuto_npc aldebaran 165 107
 sellAuto_standpoint
-sellAuto_distance 3
+sellAuto_distance 5
 sellAuto_maxDistance
 sellAuto_npc_steps s
 

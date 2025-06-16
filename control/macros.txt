@@ -12,3 +12,4 @@ do reload macros.txt
 }
 run-once 1
 }
+
